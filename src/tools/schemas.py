@@ -197,6 +197,22 @@ def get_tool_schemas() -> list[dict]:
         for name, spec in TOOLS.items()
     ]
 
+def to_openai_tools(names: Optional[list[str]] = None) -> list[dict]:
+    """Return tool defs in OpenAI/Qwen apply_chat_template(tools=...) shape.
+    Pass a subset of names to show only some tools + distractors in a prompt
+    (keeps sequences short — see project token-budget notes)."""
+    selected = names if names is not None else list(TOOLS.keys())
+    return [
+        {
+            "type": "function",
+            "function": {
+                "name": name,
+                "description": TOOLS[name]["description"],
+                "parameters": TOOLS[name]["args_model"].model_json_schema(),
+            },
+        }
+        for name in selected
+    ]
 
 if __name__ == "__main__":
     import json
