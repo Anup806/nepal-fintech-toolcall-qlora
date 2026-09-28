@@ -10,3 +10,5 @@ outputs/
 unsloth_compiled_cache/
 
 *.log
+*.egg-info/
+__init__.py
