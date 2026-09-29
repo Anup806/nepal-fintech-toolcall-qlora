@@ -1,38 +1,0 @@
-W0926 15:09:31.800000 2640 torch/utils/_pytree.py:630] <enum 'KernelPreference'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
-W0926 15:09:31.841000 2640 torch/utils/_pytree.py:630] <enum 'ScaleCalculationMode'> is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
-/home/anup806/projects/nepal-fintech-toolcall-qlora/.venv/lib/python3.12/site-packages/unsloth/import_fixes.py:4896: FutureWarning: torch._dynamo.config.inline_inbuilt_nn_modules is deprecated and does not do anything, inline_inbuilt_nn_modules is always True. It will be removed in a future version of PyTorch.
-  original_setattr(self, name, value)
-🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
-🦥 Unsloth Zoo will now patch everything to make training faster!
-python        3.12.3
-torch         2.12.1
-transformers  5.5.0
-peft          0.21.0
-trl           0.24.0
-bitsandbytes  0.50.2
-triton        3.7.1
-unsloth       2026.9.11
-gpu           NVIDIA GeForce RTX 4050 Laptop GPU  6.0 GiB
-==((====))==  Unsloth 2026.9.11: Fast Qwen2 patching. Transformers: 5.5.0.
-   \\   /|    NVIDIA GeForce RTX 4050 Laptop GPU. Num GPUs = 1. Max memory: 5.997 GB. Platform: Linux.
-O^O/ \_/ \    Torch: 2.12.1+cu130. CUDA: 8.9. CUDA Toolkit: 13.0. Triton: 3.7.1
-\        /    Bfloat16 = TRUE. FA [Xformers = None. FA2 = False]
- "-____-"     Free license: http://github.com/unslothai/unsloth
-Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
-Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]Loading weights:   0%|          | 1/338 [00:00<01:40,  3.34it/s]Loading weights:   7%|▋         | 23/338 [00:00<00:04, 68.47it/s]Loading weights:  11%|█         | 37/338 [00:00<00:03, 82.26it/s]Loading weights:  24%|██▍       | 81/338 [00:00<00:01, 182.28it/s]Loading weights:  34%|███▍      | 116/338 [00:00<00:00, 229.36it/s]Loading weights:  48%|████▊     | 162/338 [00:00<00:00, 296.07it/s]Loading weights:  62%|██████▏   | 209/338 [00:00<00:00, 345.24it/s]Loading weights:  75%|███████▌  | 255/338 [00:01<00:00, 376.76it/s]Loading weights:  88%|████████▊ | 296/338 [00:01<00:00, 348.74it/s]Loading weights:  99%|█████████▊| 333/338 [00:01<00:00, 342.60it/s]Loading weights: 100%|██████████| 338/338 [00:01<00:00, 257.48it/s]
-Unsloth 2026.9.11 patched 28 layers with 28 QKV layers, 28 O layers and 28 MLP layers.
-`use_return_dict` is deprecated! Use `return_dict` instead!
-/home/anup806/projects/nepal-fintech-toolcall-qlora/.venv/lib/python3.12/site-packages/unsloth/import_fixes.py:4091: UserWarning: 'has_cuda' is deprecated, please use 'torch.backends.cuda.is_built()'
-  return original(name)
-/home/anup806/projects/nepal-fintech-toolcall-qlora/.venv/lib/python3.12/site-packages/unsloth/import_fixes.py:4091: UserWarning: 'has_cudnn' is deprecated, please use 'torch.backends.cudnn.is_available()'
-  return original(name)
-/home/anup806/projects/nepal-fintech-toolcall-qlora/.venv/lib/python3.12/site-packages/unsloth/import_fixes.py:4091: UserWarning: 'has_mps' is deprecated, please use 'torch.backends.mps.is_built()'
-  return original(name)
-/home/anup806/projects/nepal-fintech-toolcall-qlora/.venv/lib/python3.12/site-packages/unsloth/import_fixes.py:4091: UserWarning: 'has_mkldnn' is deprecated, please use 'torch.backends.mkldnn.is_available()'
-  return original(name)
-Both `max_new_tokens` (=30) and `max_length`(=32768) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
-4-bit model loaded. VRAM allocated: 1.47 GiB
-trainable params: 18,464,768 || all params: 1,562,179,072 || trainable%: 1.1820
-Unsloth: Will smartly offload gradients to save VRAM!
-fwd+bwd OK at 1024 tokens. loss=13.43  peak VRAM=1.76 GiB
-reply: Hello! How can I assist you today?
