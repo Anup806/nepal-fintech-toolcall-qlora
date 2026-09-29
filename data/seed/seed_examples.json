@@ -1,107 +1,107 @@
 [
-  {"id": "bal_call_1", "tools_shown": ["get_balance", "get_transactions", "list_beneficiaries", "get_exchange_rate"],
+  {"id": "bal_call_1", "tools_shown": ["get_transactions", "get_exchange_rate", "get_balance", "list_beneficiaries"],
    "user": "What's my balance in account 8821345?",
    "target": {"type": "call", "name": "get_balance", "arguments": {"account_id": "8821345"}}},
 
-  {"id": "txn_call_1", "tools_shown": ["get_transactions", "get_balance", "get_bill_due", "get_exchange_rate"],
-   "user": "Show me my transactions over Rs. 5000 from account 8821345 last month, food category only.",
+  {"id": "txn_call_1", "tools_shown": ["get_balance", "get_transactions", "get_bill_due", "get_exchange_rate"],
+   "user": "Show me my transactions of Rs. 5000 or more from account 8821345 in September 2026, food category only.",
    "target": {"type": "call", "name": "get_transactions",
-     "arguments": {"account_id": "8821345", "min_amount_paisa": 500000, "category": "food"}}},
+     "arguments": {"account_id": "8821345", "start_date": "2026-09-01", "end_date": "2026-09-30", "min_amount_paisa": 500000, "category": "food"}}},
 
-  {"id": "fx_call_1", "tools_shown": ["get_exchange_rate", "get_balance", "check_payment_status", "get_bill_due"],
+  {"id": "fx_call_1", "tools_shown": ["get_balance", "check_payment_status", "get_bill_due", "get_exchange_rate"],
    "user": "What's the USD to NPR rate today?",
    "target": {"type": "call", "name": "get_exchange_rate", "arguments": {"currency_code": "USD"}}},
 
-  {"id": "fx_ask_1", "tools_shown": ["get_exchange_rate", "get_balance", "check_payment_status", "get_bill_due"],
+  {"id": "fx_call_2", "tools_shown": ["check_payment_status", "get_exchange_rate", "get_balance", "get_bill_due"],
    "user": "What's the dollar rate right now?",
-   "target": {"type": "ask", "content": "Do you mean US Dollars (USD), or Australian Dollars (AUD)?"}},
+   "target": {"type": "call", "name": "get_exchange_rate", "arguments": {"currency_code": "USD"}}},
 
-  {"id": "fx_refuse_1", "tools_shown": ["get_exchange_rate", "get_balance", "check_payment_status", "get_bill_due"],
+  {"id": "fx_refuse_1", "tools_shown": ["get_bill_due", "get_exchange_rate", "get_balance", "check_payment_status"],
    "user": "What's the Bitcoin to NPR rate?",
    "target": {"type": "reply", "content": "I can only look up NRB-listed fiat currencies (USD, EUR, GBP, AUD, INR, JPY, AED, SAR, QAR, KWD, MYR). I can't check cryptocurrency rates."}},
 
-  {"id": "bill_call_1", "tools_shown": ["get_bill_due", "pay_bill", "get_balance", "topup_mobile"],
+  {"id": "bill_call_1", "tools_shown": ["pay_bill", "get_balance", "get_bill_due", "topup_mobile"],
    "user": "How much is due on my NEA electricity bill, account number 100234567?",
    "target": {"type": "call", "name": "get_bill_due", "arguments": {"biller": "NEA", "account_number": "100234567"}}},
 
-  {"id": "bill_ask_1", "tools_shown": ["get_bill_due", "pay_bill", "get_balance", "topup_mobile"],
+  {"id": "bill_ask_1", "tools_shown": ["topup_mobile", "get_bill_due", "pay_bill", "get_balance"],
    "user": "Check my NTC bill for me.",
    "target": {"type": "ask", "content": "What's your NTC account/subscriber number?"}},
 
-  {"id": "status_call_1", "tools_shown": ["check_payment_status", "create_payment_link", "get_balance", "list_beneficiaries"],
+  {"id": "status_call_1", "tools_shown": ["create_payment_link", "get_balance", "list_beneficiaries", "check_payment_status"],
    "user": "Has payment pidx ABC123XYZ been paid yet?",
    "target": {"type": "call", "name": "check_payment_status", "arguments": {"pidx": "ABC123XYZ"}}},
 
-  {"id": "status_ask_1", "tools_shown": ["check_payment_status", "create_payment_link", "get_balance", "list_beneficiaries"],
+  {"id": "status_ask_1", "tools_shown": ["get_balance", "check_payment_status", "list_beneficiaries", "create_payment_link"],
    "user": "Did they pay me yet?",
    "target": {"type": "ask", "content": "Which payment link — could you share the payment ID (pidx)?"}},
 
-  {"id": "status_refuse_1", "tools_shown": ["check_payment_status", "create_payment_link", "get_balance", "list_beneficiaries"],
+  {"id": "status_refuse_1", "tools_shown": ["list_beneficiaries", "create_payment_link", "check_payment_status", "get_balance"],
    "user": "Check if my rent got paid this month.",
-   "target": {"type": "reply", "content": "I don't see a payment link created for that. If you have a specific payment ID (pidx), share it and I can check its status."}},
+   "target": {"type": "reply", "content": "I can only check payments made through a payment link, using its payment ID (pidx). I can't look up rent payments otherwise. If you have the pidx, share it and I'll check."}},
 
-  {"id": "benlist_call_1", "tools_shown": ["list_beneficiaries", "add_beneficiary", "transfer_money", "get_balance"],
+  {"id": "benlist_call_1", "tools_shown": ["get_balance", "transfer_money", "list_beneficiaries", "add_beneficiary"],
    "user": "Who are my saved beneficiaries for account 8821345?",
    "target": {"type": "call", "name": "list_beneficiaries", "arguments": {"account_id": "8821345"}}},
 
-  {"id": "transfer_call_1", "tools_shown": ["transfer_money", "list_beneficiaries", "get_balance", "add_beneficiary"],
+  {"id": "transfer_call_1", "tools_shown": ["list_beneficiaries", "add_beneficiary", "get_balance", "transfer_money"],
    "user": "Send Rs. 1500 to my beneficiary BEN1023 from account 8821345.",
    "target": {"type": "call", "name": "transfer_money",
      "arguments": {"from_account_id": "8821345", "to_beneficiary_id": "BEN1023", "amount_paisa": 150000}}},
 
-  {"id": "transfer_ask_1", "tools_shown": ["transfer_money", "list_beneficiaries", "get_balance", "add_beneficiary"],
+  {"id": "transfer_ask_1", "tools_shown": ["get_balance", "transfer_money", "add_beneficiary", "list_beneficiaries"],
    "user": "Send some money to Sandesh.",
    "target": {"type": "ask", "content": "How much would you like to send, and from which account?"}},
 
-  {"id": "transfer_refuse_1", "tools_shown": ["transfer_money", "list_beneficiaries", "get_balance", "add_beneficiary"],
+  {"id": "transfer_ask_2", "tools_shown": ["add_beneficiary", "get_balance", "transfer_money", "list_beneficiaries"],
    "user": "Transfer Rs. 2000 to my friend Rita, she's not saved yet.",
-   "target": {"type": "reply", "content": "Rita isn't in your saved beneficiaries yet. Want me to add her first, then send the transfer?"}},
+   "target": {"type": "ask", "content": "Since Rita isn't saved yet, I'll need to add her as a beneficiary first. What's her account number and bank name, and which of your accounts should the Rs. 2000 come from?"}},
 
-  {"id": "paybill_call_1", "tools_shown": ["pay_bill", "get_bill_due", "get_balance", "topup_mobile"],
+  {"id": "paybill_call_1", "tools_shown": ["get_bill_due", "pay_bill", "topup_mobile", "get_balance"],
    "user": "Pay my NTC bill, account 100234567, amount Rs. 850.",
    "target": {"type": "call", "name": "pay_bill",
      "arguments": {"biller": "NTC", "account_number": "100234567", "amount_paisa": 85000}}},
 
-  {"id": "paybill_ask_1", "tools_shown": ["pay_bill", "get_bill_due", "get_balance", "topup_mobile"],
+  {"id": "paybill_ask_1", "tools_shown": ["get_balance", "topup_mobile", "pay_bill", "get_bill_due"],
    "user": "Pay my Ncell bill for account 100234567.",
    "target": {"type": "ask", "content": "How much would you like to pay? You can also ask me to check the amount due first."}},
 
-  {"id": "topup_call_1", "tools_shown": ["topup_mobile", "pay_bill", "get_balance", "get_bill_due"],
+  {"id": "topup_call_1", "tools_shown": ["get_bill_due", "get_balance", "pay_bill", "topup_mobile"],
    "user": "Top up 9812345678 with Rs. 200, it's an Ncell number.",
    "target": {"type": "call", "name": "topup_mobile",
      "arguments": {"phone_number": "9812345678", "telecom": "Ncell", "amount_paisa": 20000}}},
 
-  {"id": "topup_ask_1", "tools_shown": ["topup_mobile", "pay_bill", "get_balance", "get_bill_due"],
+  {"id": "topup_ask_1", "tools_shown": ["pay_bill", "topup_mobile", "get_bill_due", "get_balance"],
    "user": "Top up my phone with Rs. 100.",
    "target": {"type": "ask", "content": "What's the phone number, and is it NTC or Ncell?"}},
 
-  {"id": "topup_refuse_1", "tools_shown": ["topup_mobile", "pay_bill", "get_balance", "get_bill_due"],
+  {"id": "topup_refuse_1", "tools_shown": ["get_balance", "get_bill_due", "topup_mobile", "pay_bill"],
    "user": "Top up 1234567890 with Rs. 100, it's NTC.",
    "target": {"type": "reply", "content": "That doesn't look like a valid Nepali mobile number — it should start with 97 or 98. Could you double check it?"}},
 
-  {"id": "paylink_call_1", "tools_shown": ["create_payment_link", "check_payment_status", "get_balance", "list_beneficiaries"],
+  {"id": "paylink_call_1", "tools_shown": ["get_balance", "list_beneficiaries", "create_payment_link", "check_payment_status"],
    "user": "Create a payment link for Rs. 3000 for 'wedding photography deposit'.",
    "target": {"type": "call", "name": "create_payment_link",
      "arguments": {"amount_paisa": 300000, "purpose": "wedding photography deposit"}}},
 
-  {"id": "paylink_ask_1", "tools_shown": ["create_payment_link", "check_payment_status", "get_balance", "list_beneficiaries"],
+  {"id": "paylink_ask_1", "tools_shown": ["check_payment_status", "create_payment_link", "list_beneficiaries", "get_balance"],
    "user": "Make a payment link for me.",
    "target": {"type": "ask", "content": "How much should the payment link request, and what's it for?"}},
 
-  {"id": "addben_call_1", "tools_shown": ["add_beneficiary", "list_beneficiaries", "transfer_money", "get_balance"],
+  {"id": "addben_call_1", "tools_shown": ["transfer_money", "add_beneficiary", "get_balance", "list_beneficiaries"],
    "user": "Add Rita Sharma as a beneficiary, account 200456781, NIC Asia Bank.",
    "target": {"type": "call", "name": "add_beneficiary",
      "arguments": {"name": "Rita Sharma", "account_number": "200456781", "bank_name": "NIC Asia Bank"}}},
 
-  {"id": "addben_ask_1", "tools_shown": ["add_beneficiary", "list_beneficiaries", "transfer_money", "get_balance"],
+  {"id": "addben_ask_1", "tools_shown": ["list_beneficiaries", "get_balance", "transfer_money", "add_beneficiary"],
    "user": "Save Sandesh as a new beneficiary.",
    "target": {"type": "ask", "content": "What's Sandesh's account number and bank name?"}},
 
-  {"id": "block_call_1", "tools_shown": ["block_card", "get_balance", "get_transactions", "list_beneficiaries"],
+  {"id": "block_call_1", "tools_shown": ["get_transactions", "block_card", "list_beneficiaries", "get_balance"],
    "user": "Block my card ending 4417, I lost it.",
    "target": {"type": "call", "name": "block_card", "arguments": {"card_last4": "4417", "reason": "lost"}}},
 
-  {"id": "block_ask_1", "tools_shown": ["block_card", "get_balance", "get_transactions", "list_beneficiaries"],
+  {"id": "block_ask_1", "tools_shown": ["get_balance", "list_beneficiaries", "get_transactions", "block_card"],
    "user": "Block my card, I think someone used it.",
    "target": {"type": "ask", "content": "Which card — could you give me the last 4 digits?"}},
 
