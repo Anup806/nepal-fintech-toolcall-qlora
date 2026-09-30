@@ -1,7 +1,7 @@
 """Single source of truth: example -> chat text -> (input_ids, labels).
 Training, evaluation and the API must ALL build prompts through this module."""
 from functools import lru_cache
-
+from src.data.prompts import build_system
 from src.data.masking import build_labels
 from src.tools import schemas
 from src.tools.compact import compact_tools
@@ -18,7 +18,10 @@ def tool_registry():
 
 
 def build_messages(ex):
-    msgs = [{"role": "user", "content": ex["user"]}]
+    msgs = [
+        {"role": "system", "content": build_system(ex.get("today"), ex.get("account"))},
+        {"role": "user", "content": ex["user"]},
+    ]
     t = ex["target"]
     if t["type"] == "call":
         msgs.append({"role": "assistant", "content": "", "tool_calls": [{
