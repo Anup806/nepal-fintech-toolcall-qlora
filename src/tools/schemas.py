@@ -6,6 +6,8 @@ Design rules (see /docs/behavior_spec.md for the full per-tool contract):
 - Every field the model must fill has a description — this text is what
   the model actually sees at inference time, so it doubles as prompt content.
 - extra="forbid" on every model: the model must not invent unlisted args.
+- Transfers take a beneficiary NAME. The API layer resolves name -> ID and
+  handles "not found" / "ambiguous" errors; the model never sees IDs.
 """
 
 from datetime import date
@@ -96,7 +98,7 @@ class ListBeneficiariesArgs(ArgModel):
 
 class TransferMoneyArgs(ArgModel):
     from_account_id: AccountId = Field(..., description="The sender's account ID.")
-    to_beneficiary_id: constr(min_length=1) = Field(..., description="The ID of a saved beneficiary to send money to.")
+    beneficiary_name: constr(min_length=1) = Field(..., description="Name of a saved beneficiary to send money to.")
     amount_paisa: Paisa = Field(..., description="Amount to transfer, in paisa (1 NPR = 100 paisa).")
     note: Optional[str] = Field(None, description="Optional note/memo for the transfer.")
 
@@ -159,7 +161,7 @@ TOOLS: dict[str, dict] = {
         "args_model": ListBeneficiariesArgs,
     },
     "transfer_money": {
-        "description": "Transfer money from the user's account to a saved beneficiary. Irreversible.",
+        "description": "Transfer money from the user's account to a saved beneficiary, identified by name. Irreversible.",
         "args_model": TransferMoneyArgs,
     },
     "pay_bill": {
