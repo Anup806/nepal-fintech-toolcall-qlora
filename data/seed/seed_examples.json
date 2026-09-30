@@ -1,12 +1,21 @@
 [
   {"id": "bal_call_1", "tools_shown": ["get_transactions", "get_exchange_rate", "get_balance", "list_beneficiaries"],
+   "user": "What's my balance?",
+   "target": {"type": "call", "name": "get_balance", "arguments": {"account_id": "5530218840"}}},
+
+  {"id": "bal_call_2", "tools_shown": ["transfer_money", "get_balance", "block_card", "get_exchange_rate"],
    "user": "What's my balance in account 8821345?",
    "target": {"type": "call", "name": "get_balance", "arguments": {"account_id": "8821345"}}},
 
   {"id": "txn_call_1", "tools_shown": ["get_balance", "get_transactions", "get_bill_due", "get_exchange_rate"],
-   "user": "Show me my transactions of Rs. 5000 or more from account 8821345 in September 2026, food category only.",
+   "user": "Show me my food transactions of Rs. 5000 or more from last month.",
    "target": {"type": "call", "name": "get_transactions",
-     "arguments": {"account_id": "8821345", "start_date": "2026-09-01", "end_date": "2026-09-30", "min_amount_paisa": 500000, "category": "food"}}},
+     "arguments": {"account_id": "5530218840", "start_date": "2026-08-01", "end_date": "2026-08-31", "min_amount_paisa": 500000, "category": "food"}}},
+
+  {"id": "txn_call_2", "tools_shown": ["list_beneficiaries", "get_balance", "get_transactions", "pay_bill"],
+   "user": "What did I spend yesterday?",
+   "target": {"type": "call", "name": "get_transactions",
+     "arguments": {"account_id": "5530218840", "start_date": "2026-09-29", "end_date": "2026-09-29"}}},
 
   {"id": "fx_call_1", "tools_shown": ["get_balance", "check_payment_status", "get_bill_due", "get_exchange_rate"],
    "user": "What's the USD to NPR rate today?",
@@ -15,6 +24,10 @@
   {"id": "fx_call_2", "tools_shown": ["check_payment_status", "get_exchange_rate", "get_balance", "get_bill_due"],
    "user": "What's the dollar rate right now?",
    "target": {"type": "call", "name": "get_exchange_rate", "arguments": {"currency_code": "USD"}}},
+
+  {"id": "fx_ask_1", "tools_shown": ["get_bill_due", "get_exchange_rate", "get_balance", "topup_mobile"],
+   "user": "What's the exchange rate today?",
+   "target": {"type": "ask", "content": "Which currency would you like the rate for, for example USD, EUR or INR?"}},
 
   {"id": "fx_refuse_1", "tools_shown": ["get_bill_due", "get_exchange_rate", "get_balance", "check_payment_status"],
    "user": "What's the Bitcoin to NPR rate?",
@@ -41,21 +54,21 @@
    "target": {"type": "reply", "content": "I can only check payments made through a payment link, using its payment ID (pidx). I can't look up rent payments otherwise. If you have the pidx, share it and I'll check."}},
 
   {"id": "benlist_call_1", "tools_shown": ["get_balance", "transfer_money", "list_beneficiaries", "add_beneficiary"],
-   "user": "Who are my saved beneficiaries for account 8821345?",
-   "target": {"type": "call", "name": "list_beneficiaries", "arguments": {"account_id": "8821345"}}},
+   "user": "Who are my saved beneficiaries?",
+   "target": {"type": "call", "name": "list_beneficiaries", "arguments": {"account_id": "5530218840"}}},
 
   {"id": "transfer_call_1", "tools_shown": ["list_beneficiaries", "add_beneficiary", "get_balance", "transfer_money"],
-   "user": "Send Rs. 1500 to my beneficiary BEN1023 from account 8821345.",
+   "user": "Send Rs. 1500 to Sandesh.",
    "target": {"type": "call", "name": "transfer_money",
-     "arguments": {"from_account_id": "8821345", "to_beneficiary_id": "BEN1023", "amount_paisa": 150000}}},
+     "arguments": {"from_account_id": "5530218840", "beneficiary_name": "Sandesh", "amount_paisa": 150000}}},
 
   {"id": "transfer_ask_1", "tools_shown": ["get_balance", "transfer_money", "add_beneficiary", "list_beneficiaries"],
    "user": "Send some money to Sandesh.",
-   "target": {"type": "ask", "content": "How much would you like to send, and from which account?"}},
+   "target": {"type": "ask", "content": "How much would you like to send to Sandesh?"}},
 
   {"id": "transfer_ask_2", "tools_shown": ["add_beneficiary", "get_balance", "transfer_money", "list_beneficiaries"],
    "user": "Transfer Rs. 2000 to my friend Rita, she's not saved yet.",
-   "target": {"type": "ask", "content": "Since Rita isn't saved yet, I'll need to add her as a beneficiary first. What's her account number and bank name, and which of your accounts should the Rs. 2000 come from?"}},
+   "target": {"type": "ask", "content": "Since Rita isn't saved yet, I'll need to add her as a beneficiary first. What's her account number and bank name?"}},
 
   {"id": "paybill_call_1", "tools_shown": ["get_bill_due", "pay_bill", "topup_mobile", "get_balance"],
    "user": "Pay my NTC bill, account 100234567, amount Rs. 850.",
